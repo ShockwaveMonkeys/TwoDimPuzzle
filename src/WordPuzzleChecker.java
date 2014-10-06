@@ -1,3 +1,15 @@
+/*
+ * Created: 		Oct 05, 2014
+ * Last modified:	Oct 06, 2014
+ * Team name: 		ShockwaveMonkeys
+ * Author: 			Younggun Chung 
+ * Project:			Two Dimensional Letter Puzzle V2
+ * 
+ * purpose:			Checking the puzzle size from input.txt
+ * 
+ */
+
+
 package TwoDimPuzzle;
 
 import java.io.File;

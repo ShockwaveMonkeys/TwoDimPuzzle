@@ -1,3 +1,15 @@
+/*
+ * Created: 		Oct 05, 2014
+ * Last modified:	Oct 06, 2014
+ * Team name: 		ShockwaveMonkeys
+ * Author: 			Lynn Longboy
+ * Project:			Two Dimensional Letter Puzzle V2
+ * 
+ * purpose:			Fill in puzzle and words into arrays from input.txt
+ * 
+ */
+
+
 package TwoDimPuzzle;
 
 import java.io.File;

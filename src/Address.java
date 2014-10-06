@@ -1,25 +1,25 @@
-package TwoDimPuzzle;
-
-import java.util.ArrayList;
-
 /*
- * Created: 	Oct 02, 2014
- * Author: 		Younggun Chung
- * Team name: 	ShockwaveMonkeys
- * Project:		Two Dimensional Letter Puzzle V2
+ * Created: 		Oct 02, 2014
+ * Last modified:	Oct 06, 2014
+ * Team name: 		ShockwaveMonkeys
+ * Author: 			Younggun Chung 
+ * Project:			Two Dimensional Letter Puzzle V2
  * 
- * purpose:		word searching algorithm on 2d array char puzzle
+ * purpose:			word searching algorithm on 2d array char puzzle
  * 
- * comment:		1) must need to get data from input class.
- * 				2) int row: puzzle's size of row
- * 				3) int col: puzzle's size of column
- * 				4) char[][] puzzle: puzzle's char table
- * 				5) String word: a word for searching on the puzzle 
+ * comment:			1) must need to get data from input class.
+ * 					2) int row: puzzle's size of row
+ * 					3) int col: puzzle's size of column
+ * 					4) char[][] puzzle: puzzle's char table
+ * 					5) String word: a word for searching on the puzzle 
  * 
- * memo:		1) if you want to test this class, you can try "main" at bottom line
+ * memo:			1) if you want to test this class, you can try "main" at bottom line
  * 
  */
 
+package TwoDimPuzzle;
+
+import java.util.ArrayList;
 
 public class Address {
 	
@@ -56,11 +56,14 @@ public class Address {
 	public void search8(String word){
 		int i=0, j=0, w=0;		// using in for loop. i->col, j->row, w->word.charAt(w)
 		int wordChecker;		// counter in level 3;
+		int searchCounter = 0;	// for check the word on the puzzle or not. 0 means no word on the puzzle. 
 		
 		if(word.length() < 3){		// if length of word is less than 3, it is too small to searching word on puzzle
 			System.out.print("Seriously? the length of word is too short!");
 			return;
 		}
+		
+		System.out.print(word + ": ");
 		
 		// level 0
 		for(i=0; i < col; i++){			//	for loop: puzzle's column 
@@ -87,7 +90,9 @@ public class Address {
 							 * |col	|	i+1					|	i+1					|
 							 * |row	|	j+1					|	j+word.length()		|
 							 */	
-							System.out.println(word + ": [(" + (i+1) + "," + (j+1) + ")-(" + (i+1) + "," + (j+word.length()) + ")]" + " (-)row");
+							searchCounter++;
+							
+							System.out.print("[(" + (i+1) + "," + (j+1) + ")-(" + (i+1) + "," + (j+word.length()) + ")]");
 						}
 					}	// if; level 2-1; row
 					
@@ -111,7 +116,9 @@ public class Address {
 							 * |col	|	i+1					|	i+1					|
 							 * |row	|	j+1					|	j-word.length()+2	|
 							 */	
-							System.out.println(word + ": [(" + (i+1) + "," + (j+1) + ")-(" + (i+1) + "," + (j-word.length()+2) + ")]" + " (-)reverse-row");
+							searchCounter++;
+							
+							System.out.print("[(" + (i+1) + "," + (j+1) + ")-(" + (i+1) + "," + (j-word.length()+2) + ")]");
 							
 						}
 					}	// if; level 2-2; reverse row
@@ -136,7 +143,9 @@ public class Address {
 							 * |col	|	i+1					|	i+word.length()		|
 							 * |row	|	j+1					|	j+1					|
 							 */	
-							System.out.println(word + ": [(" + (i+1) + "," + (j+1) + ")-(" + (i+word.length()) + "," + (j+1) + ")]" + " (|)column");
+							searchCounter++;
+							
+							System.out.print("(" + (i+1) + "," + (j+1) + ")-(" + (i+word.length()) + "," + (j+1) + ")]");
 						}
 					}	// if; level 2-3; column
 					
@@ -159,8 +168,10 @@ public class Address {
 							 * +----+-----------------------+-----------------------+
 							 * |col	|	i+1					|	i-word.length()+2	|
 							 * |row	|	j+1					|	j+1					|
-							 */	
-							System.out.println(word + ": [(" + (i+1) + "," + (j+1) + ")-(" + (i-word.length()+2) + "," + (j+1) + ")]" + " (|)reverse column");
+							 */
+							searchCounter++;
+							
+							System.out.print("[(" + (i+1) + "," + (j+1) + ")-(" + (i-word.length()+2) + "," + (j+1) + ")]");
 						}
 					}	// if; level 2-4; reverse column
 					
@@ -184,7 +195,9 @@ public class Address {
 							 * |col	|	i+1					|	i+word.length()		|
 							 * |row	|	j+1					|	j+word.length()		|
 							 */	
-							System.out.println(word + ": [(" + (i+1) + "," + (j+1) + ")-(" + (i+word.length()) + "," + (j+word.length()) + ")]" + " (\\)diagonal");
+							searchCounter++;
+							
+							System.out.print("[(" + (i+1) + "," + (j+1) + ")-(" + (i+word.length()) + "," + (j+word.length()) + ")]");
 						}
 					}	// if; level 2-5; diagonal (1)
 					
@@ -208,7 +221,9 @@ public class Address {
 							 * |col	|	i+1					|	i-word.length()+2	|
 							 * |row	|	j+1					|	j-word.length()+2	|
 							 */	
-							System.out.println(word + ": [(" + (i+1) + "," + (j+1) + ")-(" + (i-word.length()+2) + "," + (j-word.length()+2) + ")]" + " (\\)revese-diagonal");
+							searchCounter++;
+							
+							System.out.print("[(" + (i+1) + "," + (j+1) + ")-(" + (i-word.length()+2) + "," + (j-word.length()+2) + ")]");
 						}
 					}	// if; level 2-6; reverse diagonal (2)
 					
@@ -232,7 +247,9 @@ public class Address {
 							 * |col	|	i+1					|	i+word.length()		|
 							 * |row	|	j+1					|	j-word.length()+2	|
 							 */	
-							System.out.println(word + ": [(" + (i+1) + "," + (j+1) + ")-(" + (i+word.length()) + "," + (j-word.length()+2) + ")]" + " (/)diagoanl");
+							searchCounter++;
+							
+							System.out.print("[(" + (i+1) + "," + (j+1) + ")-(" + (i+word.length()) + "," + (j-word.length()+2) + ")]");
 						}
 					}	// if; level 2-7; diagonal (3)
 					
@@ -256,7 +273,9 @@ public class Address {
 							 * |col	|	i+1					|	i-word.length()+2	|
 							 * |row	|	j+1					|	j+word.length()		|
 							 */	
-							System.out.println(word + ": [(" + (i+1) + "," + (j+1) + ")-(" + (i-word.length()+2) + "," + (j+word.length()) + ")]" + " (/)reverse-diagoanl");
+							searchCounter++;
+							
+							System.out.print("[(" + (i+1) + "," + (j+1) + ")-(" + (i-word.length()+2) + "," + (j+word.length()) + ")]");
 						}
 					}	// if; level 2-8; diagonal (4)
 				}	// if; level 1
@@ -264,7 +283,13 @@ public class Address {
 			}	// for; j
 		}	// for; i; level 0
 		
+		if(searchCounter == 0){		// if the word is not on the puzzle
+			System.out.print(" Cannot find on puzzle.");
+		}
+		
+		System.out.println("");		// change the line (word by word)
 	}	// search8
+	
 	
 
 //	// test method
