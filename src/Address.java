@@ -1,3 +1,5 @@
+package TwoDimPuzzle;
+
 import java.util.ArrayList;
 
 /*
